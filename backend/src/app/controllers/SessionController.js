@@ -10,7 +10,7 @@ class SessionController {
       return res.status(401).json({ error: 'User  not found' })
     }
 
-    if (!await user.validatePassword(password)) {
+    if (!(await user.validatePassword(password))) {
       return res.status(401).json({ error: 'Password does not match' })
     }
 
