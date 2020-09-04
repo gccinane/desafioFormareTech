@@ -9,7 +9,7 @@ function Message({ author, content, isAdmin, handler, id }) {
       <h1>{author}</h1>
       <p>{content}</p>
       {isAdmin && (
-        <button type="button" onClick={handler(id)}>
+        <button type="button" onClick={() => handler(id)}>
           <FiDelete size={20} color="red" />
         </button>
       )}
@@ -29,4 +29,5 @@ Message.propTypes = {
   content: PropTypes.string.isRequired,
   isAdmin: PropTypes.bool,
   handler: PropTypes.func,
+  id: PropTypes.string.isRequired,
 };

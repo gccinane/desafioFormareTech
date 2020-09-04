@@ -5,7 +5,7 @@ import api from "~/services/api";
 
 import store from "~/store";
 import Message from "~/components/Message";
-import { Form, SendText, Container } from "./styles";
+import { Form, SendText, Container, Filter } from "./styles";
 
 const socket = io("localhost:3333");
 
@@ -23,6 +23,7 @@ function Chat() {
   useEffect(() => {
     async function LoadMessages() {
       const response = await api.get(`/messages?username=${search}`);
+
       const parsedMessages = response.data.mensagens.map((message) => ({
         author: `${format(parseISO(message.createdAt), "dd/MM/yyyy")} - ${
           message.author
@@ -30,7 +31,6 @@ function Chat() {
         content: message.content,
         id: message._id,
       }));
-
       setMessages(parsedMessages);
     }
 
@@ -49,7 +49,6 @@ function Chat() {
       author: username,
       content: newMessage,
     });
-    console.tron.log(response);
 
     const { author, content, createdAt, _id } = response.data;
 
@@ -66,7 +65,6 @@ function Chat() {
       socket.emit("sendMessage", {
         author: parsedMessage.author,
         content: parsedMessage.content,
-        id: parsedMessage.id,
       });
       setMessages([...messages, parsedMessage]);
     } catch (error) {
@@ -81,18 +79,48 @@ function Chat() {
   async function handleDeleteMessage(id) {
     try {
       await api.delete(`/messages?id=${id}`);
+      const filteredMessages = messages.filter((message) => message.id !== id);
+
+      setMessages(filteredMessages);
     } catch (error) {
       console.tron.log(error);
     }
+  }
 
-    messages.filter((message) => message.id === id);
+  async function handleChangeOrder() {
+    console.tron.log(ascOrder);
+    const response = !ascOrder
+      ? await api.get(`/messages?order=asc&username=${search}`)
+      : await api.get(`/messages?order=desc&username=${search}`);
+
+    setAscOrder(!ascOrder);
+
+    const parsedMessages = response.data.mensagens.map((message) => ({
+      author: `${format(parseISO(message.createdAt), "dd/MM/yyyy")} - ${
+        message.author
+      } - ${format(parseISO(message.createdAt), "HH:mm")}`,
+      content: message.content,
+      id: message._id,
+    }));
+    setMessages(parsedMessages);
   }
 
   return (
     <Container>
       {isAdmin && (
         <header>
-          <h1>deus</h1>
+          <span>
+            <Filter
+              value={search}
+              type="search"
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Digite o username"
+            />
+
+            <button type="button" onClick={handleChangeOrder}>
+              Mudar Ordem
+            </button>
+          </span>
         </header>
       )}
       <Form onSubmit={handleSendMessage}>
