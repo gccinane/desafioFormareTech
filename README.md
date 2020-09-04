@@ -22,7 +22,7 @@ Alterar sua string da conexão para o seu banco de dados, alterar a porta que o 
 
 Após isso o servidor está rodando
 
-A aplicação não possui um usuário admin, mas pode-se criar um fazendo uma requisição de método POST no endpoint de 'localhost:SUA_PORTA/user' e passando como corpo da requisição "admin":true, para criar outros usuários não admin basta não passar o campo, adicionando no body {"username":"SEU_USERNAME","password":"SUA_SENHA_SECRETA"}
+A aplicação não possui um usuário admin, mas pode-se criar um fazendo uma requisição de método POST no endpoint de 'localhost:SUA_PORTA/user' e passando como corpo da requisição {"admin":true}, para criar outros usuários não admin basta não passar o campo, adicionando no body {"username":"SEU_USERNAME","password":"SUA_SENHA_SECRETA"}
 
 <h1> Frontend</h1>
 
