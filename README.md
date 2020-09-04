@@ -4,6 +4,7 @@
 <h1>A APLICAÇÃO</h1>
  
 <em>  No backend foi utilizado uma API o criptografia da senha do usário, autenticação JWT, o modelo MVC e Socket.io para a comunicação em tempo real. </em>
+<br/>
 <em>  No frontend foi utilizado o styled-components para fazer a estilização da página, redux para manejar o estado na aplicação, axios para fazer chamadas a api, socket.io para se comunicar com o backend e Yup para validação de dados de entrada.</em>
 
 
