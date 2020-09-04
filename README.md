@@ -1,7 +1,11 @@
 
 
 
-
+<h1>A APLICAÇÃO<h1>
+ 
+ No backend foi utilizado uma API o criptografia da senha do usário, autenticação JWT, o modelo MVC e Socket.io para a comunicação em tempo real. 
+ 
+ No frontend foi utilizado o styled-components para fazer a estilização da página, redux para manejar o estado na aplicação, axios para fazer chamadas a api, socket.io para se comunicar com o backend e Yup para validação de dados de entrada.
 
 
 
@@ -21,7 +25,7 @@ A aplicação não possui um usuário admin, mas pode-se criar um fazendo uma re
 
 <h1> Frontend</h1>
 
-Altere a porta que o [axios](https://github.com/axios/axios) e o [socket.io](https://github.com/axios/axios) estão tentando acessar e rode um yarn start ou npm start para rodar o servidor.
+Altere a porta que o [axios](https://github.com/axios/axios) e o [socket.io](https://github.com/axios/axios) estão acessando e rode um yarn start ou npm start para rodar o servidor.
 
 
 
